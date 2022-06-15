@@ -488,7 +488,7 @@
             }
           }
         }
-      },
+      }
     },
     "/edit": {
       "post": {
@@ -505,7 +505,7 @@
             "$ref": "#/components/parameters/title"
           }
         ]
-      },
+      }
     }
   },
   "components": {
