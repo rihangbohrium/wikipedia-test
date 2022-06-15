@@ -416,7 +416,7 @@
     },
     "/compare": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "compare",
         "tags": [],
         "responses": {
           "200": {
@@ -501,7 +501,7 @@
     },
     "/edit": {
       "post": {
-        "summary": "",
+        "summary": "edit",
         "operationId": "post-edit",
         "responses": {
           "200": {
