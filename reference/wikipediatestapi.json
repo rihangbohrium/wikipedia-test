@@ -13,13 +13,20 @@
     }
   ],
   "paths": {
-    "/view": {
+    "/article": {
       "get": {
-        "summary": "view",
+        "summary": "article",
         "tags": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/articleWithBody"
+                }
+              }
+            }
           },
           "404": {
             "description": "article not found"
@@ -28,13 +35,24 @@
             "description": "Internal Server Error"
           }
         },
-        "operationId": "get-view",
+        "operationId": "get-article",
         "parameters": [
           {
-            "$ref": "#/components/parameters/title"
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "title",
+            "description": "title of article"
           }
         ],
-        "description": "raw html"
+        "description": "get information on article",
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          },
+          "description": ""
+        }
       }
     },
     "/subarticles": {
@@ -372,48 +390,6 @@
         "description": "retrieve all links to other wikipedia pages in the current one."
       }
     },
-    "/article": {
-      "get": {
-        "summary": "article",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/articleWithBody"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "article not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "operationId": "get-article",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "title",
-            "description": "title of article"
-          }
-        ],
-        "description": "get information on article",
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          },
-          "description": ""
-        }
-      }
-    },
     "/compare": {
       "get": {
         "summary": "compare",
@@ -505,6 +481,30 @@
             "$ref": "#/components/parameters/title"
           }
         ]
+      }
+    },
+    "/view": {
+      "get": {
+        "summary": "view",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "article not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "operationId": "get-view",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/title"
+          }
+        ],
+        "description": "raw html"
       }
     }
   },
