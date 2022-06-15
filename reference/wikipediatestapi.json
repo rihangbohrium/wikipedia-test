@@ -378,7 +378,14 @@
         "tags": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/articleWithBody"
+                }
+              }
+            }
           },
           "404": {
             "description": "article not found"
@@ -402,11 +409,9 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/articleWithBody"
-              }
             }
-          }
+          },
+          "description": ""
         }
       }
     },
