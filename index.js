@@ -1,5 +1,7 @@
 const express = require('express');
 const { JSDOM } = require('jsdom');
+const cors = require('cors')
+
 
 const request = require('request-promise')
 
@@ -7,6 +9,7 @@ const request = require('request-promise')
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
+app.use(cors())
 
 app.listen(PORT, (error) =>{
     if(!error)
@@ -25,11 +28,20 @@ app.get('/test', (req, res) => {
 
 })
 
+app.post('/test', (req, res) => {
+    
+})
+
 app.get('/view', async (req, res) => {
     try {
         const title = req.query.title;
-        const response = await request(`https://en.wikipedia.org/wiki/${title}`)
-        res.send(response)
+        let response;
+        try {
+            response = await request(`https://en.wikipedia.org/wiki/${title}`)
+        } catch (err) {
+            res.status(404).send("article not found")
+            return;
+        }        res.send(response)
     } catch (err) {
         res.send(err)
     }
@@ -38,7 +50,13 @@ app.get('/view', async (req, res) => {
 app.get('/article', async (req, res) => {
     const title = req.query.title;
     try {
-        const response = await request(`https://en.wikipedia.org/wiki/${title}`)
+        let response;
+        try {
+            response = await request(`https://en.wikipedia.org/wiki/${title}`)
+        } catch (err) {
+            res.status(404).send("article not found")
+            return;
+        }
         const doc_obj = new JSDOM(response);
         const doc = doc_obj.window.document.body;
         r = {}
@@ -53,26 +71,42 @@ app.get('/article', async (req, res) => {
         })
 
         const finalBodyString = bodyString.replace('\n', '')
-        console.log(bodyString)
 
         r['body'] = finalBodyString
+        r['issues'] = false;
         res.json(r)   
-
     } catch (err) {
-        res.send(err)
+        res.status(500).send(err)
     }
 })
 
 app.get('/subarticles', async (req, res) => {
     try {
         const title = req.query.title;
-        const response = await request(`https://en.wikipedia.org/wiki/${title}`)
-        const parsedArticle = parseArticle(response)
+        let response;
+        try {
+            response = await request(`https://en.wikipedia.org/wiki/${title}`)
+        } catch (err) {
+            res.status(404).send("article not found")
+            return;
+        }        const parsedArticle = parseArticle(response)
         //res.json(JSON.parse(parsedArticle))
         res.json(parsedArticle)
     } catch (err) {
         res.json(err)
     }
+})
+
+
+app.get('/edit', async (req, res) => {
+    try {
+        const title = req.query.title;
+        const response = await request(`https://en.wikipedia.org/wiki/${title}?action=edit`)
+        res.send(response)
+    } catch (err) {
+        res.json(err)
+    }
+
 })
 
 function parseArticle(toParse) {
