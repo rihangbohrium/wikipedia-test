@@ -506,15 +506,6 @@
           }
         ]
       },
-      "put": {
-        "summary": "",
-        "operationId": "put-edit",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
