@@ -408,8 +408,7 @@
         "description": "get information on article",
         "requestBody": {
           "content": {
-            "application/json": {
-            }
+            "application/json": {}
           },
           "description": ""
         }
@@ -487,6 +486,41 @@
               "schema": {},
               "examples": {}
             }
+          }
+        }
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-compare",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/edit": {
+      "post": {
+        "summary": "",
+        "operationId": "post-edit",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "propose edits to article",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/title"
+          }
+        ]
+      },
+      "put": {
+        "summary": "",
+        "operationId": "put-edit",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
