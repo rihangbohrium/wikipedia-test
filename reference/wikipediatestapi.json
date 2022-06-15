@@ -1,0 +1,229 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "hr6kuxhysgenx"
+  },
+  "info": {
+    "title": "wikipediatestapi",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/view": {
+      "get": {
+        "summary": "view",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-view",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "title",
+            "description": "title of article"
+          }
+        ],
+        "description": "retrieve raw html of article"
+      }
+    },
+    "/subarticles": {
+      "get": {
+        "summary": "subarticles",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "x-examples": {
+                    "example-1": [
+                      "Undefined_(mathematics)",
+                      "Indeterminate_form",
+                      "Undefined_behavior",
+                      "Undefined_value",
+                      "Undefined_variable",
+                      "Declaration_(computer_programming)",
+                      "Initialization_(programming)",
+                      "Dynamic_linker",
+                      "Definition",
+                      "Undefined_citizenship",
+                      "Null_(disambiguation)",
+                      "Void_(disambiguation)",
+                      "Invalid_(disambiguation)",
+                      "Definition_(disambiguation)",
+                      "Definable_(disambiguation)",
+                      "Undefined",
+                      "Main_Page",
+                      "Unbestimmt",
+                      "Indefinido",
+                      "Privacy_policy"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-subarticles",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "title",
+            "description": "title of article"
+          }
+        ],
+        "description": "retrieve all links to other wikipedia pages on the current article."
+      }
+    },
+    "/article": {
+      "get": {
+        "summary": "article",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-article",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "title",
+            "description": "title of article"
+          }
+        ],
+        "description": "get general information on the article",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "link": {
+                    "type": "string"
+                  },
+                  "body": {
+                    "type": "string"
+                  },
+                  "issues": {
+                    "type": "boolean"
+                  }
+                },
+                "x-examples": {
+                  "example-1": {
+                    "title": "Undefined",
+                    "link": "https://en.wikipedia.org/wiki/Undefined",
+                    "body": "\nUndefined may refer to:\n",
+                    "issues": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "title": "User",
+        "type": "object",
+        "description": "",
+        "examples": [
+          {
+            "id": 142,
+            "firstName": "Alice",
+            "lastName": "Smith",
+            "email": "alice.smith@gmail.com",
+            "dateOfBirth": "1997-10-31",
+            "emailVerified": true,
+            "signUpDate": "2019-08-24"
+          }
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the given user."
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "example": "1997-10-31"
+          },
+          "emailVerified": {
+            "type": "boolean",
+            "description": "Set to true if the user's email has been verified."
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date",
+            "description": "The date that the user was created."
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email",
+          "emailVerified"
+        ]
+      }
+    }
+  }
+}
