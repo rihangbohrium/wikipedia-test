@@ -19,46 +19,22 @@
         "tags": [],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              },
-              "multipart/form-data": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {}
-                  }
-                }
-              }
-            }
+            "description": "OK"
+          },
+          "404": {
+            "description": "article not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "operationId": "get-view",
         "parameters": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "title",
-            "description": "title of article"
+            "$ref": "#/components/parameters/title"
           }
         ],
-        "description": "retrieve raw html of article"
+        "description": "raw html"
       }
     },
     "/subarticles": {
@@ -99,30 +75,318 @@
                       "Privacy_policy"
                     ]
                   }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      "Pear_(disambiguation)",
+                      "Pyrus_(disambiguation)",
+                      "Pyrus_communis",
+                      "Taxonomy_(biology)",
+                      "Plant",
+                      "Vascular_plant",
+                      "Flowering_plant",
+                      "Eudicots",
+                      "Rosids",
+                      "Rosales",
+                      "Rosaceae",
+                      "Amygdaloideae",
+                      "Maleae",
+                      "Malinae",
+                      "Carl_Linnaeus",
+                      "Species",
+                      "Genus",
+                      "Family_(biology)",
+                      "Pome",
+                      "Woodwind_instrument",
+                      "Furniture",
+                      "Juice",
+                      "Dried_fruit",
+                      "Loanword",
+                      "Vulgar_Latin",
+                      "pyriform",
+                      "pirus#Latin",
+                      "Medieval_Latin",
+                      "Native_plant",
+                      "Old_World",
+                      "Shrub",
+                      "Leaf",
+                      "Deciduous",
+                      "Evergreen",
+                      "Flower",
+                      "Apple",
+                      "Female_body_shape",
+                      "European_pear",
+                      "Calyx_(botany)",
+                      "Cartilage#Plants_and_fungi",
+                      "Carpels",
+                      "Sepal",
+                      "Petal",
+                      "Stamen",
+                      "Pyrus_pyrifolia",
+                      "Sclereids",
+                      "Pyrus_calleryana",
+                      "Pomology",
+                      "Temperate_climate",
+                      "Prehistoric_pile_dwellings_around_Lake_Zurich",
+                      "Spain",
+                      "Celtic_languages",
+                      "Nomenclature",
+                      "Alphonse_Pyramus_de_Candolle",
+                      "Natural_History_(Pliny)",
+                      "Honey",
+                      "De_re_coquinaria",
+                      "Epidermis_(botany)",
+                      "Perry",
+                      "Cider",
+                      "Western_China",
+                      "Tian_Shan",
+                      "Subspecies",
+                      "Henry_III_of_England",
+                      "Rieul_of_Senlis",
+                      "Senlis",
+                      "Rootstock",
+                      "Nashi_pear",
+                      "Pyrus_amygdaliformis",
+                      "Pyrus_anatolica",
+                      "Pyrus_armeniacifolia",
+                      "Pyrus_betulifolia",
+                      "Pyrus_boissieriana",
+                      "Pyrus_bourgaeana",
+                      "Williams_pear",
+                      "Bosc_Pear",
+                      "Syn.",
+                      "Pyrus_cordata",
+                      "Pyrus_elaeagrifolia",
+                      "Pyrus_glabra",
+                      "Pyrus_hakkiarica",
+                      "Pyrus_hopeiensis",
+                      "Pyrus_korshinskyi",
+                      "Pyrus_nivalis",
+                      "Pyrus_oxyprion",
+                      "Pyrus_pashia",
+                      "Pyrus_pseudopashia",
+                      "Pyrus_pyraster",
+                      "Pyrus_regelii",
+                      "Pyrus_salicifolia",
+                      "Pyrus_spinosa",
+                      "Pyrus_syriaca",
+                      "Pyrus_ussuriensis",
+                      "Pyrus_xerophila",
+                      "Grafting",
+                      "Quince",
+                      "Cross-breeding",
+                      "Cultivar",
+                      "Ornamental_plant",
+                      "Woodcut",
+                      "Unpalatable",
+                      "List_of_pear_cultivars",
+                      "Cultivars",
+                      "Royal_Horticultural_Society",
+                      "Award_of_Garden_Merit",
+                      "Conference_pear",
+                      "Climacteric_fruits",
+                      "List_of_pear_diseases",
+                      "List_of_Lepidoptera_that_feed_on_pear_trees",
+                      "List_of_countries_by_pear_production",
+                      "Tonne",
+                      "China",
+                      "Italy",
+                      "United_States",
+                      "Argentina",
+                      "Turkey",
+                      "FAOSTAT",
+                      "Ethylene_as_a_plant_hormone",
+                      "Banana",
+                      "Poire_Williams",
+                      "Fruit_brandy",
+                      "Jelly_(fruit_preserves)",
+                      "Jam",
+                      "Eau_de_vie",
+                      "Fruit_by_the_Foot",
+                      "Fruit_Roll-Ups",
+                      "Gieser_Wildeman",
+                      "Woodwind",
+                      "Firewood",
+                      "Tobacco",
+                      "Malus_domestica",
+                      "Food_energy",
+                      "Carbohydrate",
+                      "Sugar",
+                      "Dietary_fiber",
+                      "Fat",
+                      "Protein_(nutrient)",
+                      "Vitamin",
+                      "Thiamine",
+                      "Riboflavin",
+                      "Niacin",
+                      "Pantothenic_acid",
+                      "Vitamin_B6",
+                      "Folate",
+                      "Choline",
+                      "Vitamin_C",
+                      "Vitamin_E",
+                      "Vitamin_K",
+                      "Mineral_(nutrient)",
+                      "Calcium_in_biology#Humans",
+                      "Human_iron_metabolism",
+                      "Magnesium_in_biology",
+                      "Manganese#Biological_role",
+                      "Phosphorus#Biological_role",
+                      "Potassium_in_biology",
+                      "Sodium_in_biology",
+                      "Zinc#Biological_role",
+                      "Microgram",
+                      "Milligram",
+                      "International_unit",
+                      "Dietary_Reference_Intake",
+                      "Carbohydrates",
+                      "Protein",
+                      "Essential_nutrient",
+                      "Orchard",
+                      "Alcinous",
+                      "Odyssey",
+                      "Pomegranate",
+                      "Ficus",
+                      "Olive",
+                      "Winter",
+                      "Partridge",
+                      "The_Twelve_Days_of_Christmas_(song)",
+                      "Cumulative_song",
+                      "Walnut",
+                      "Tree_worship",
+                      "Nakh_peoples",
+                      "North_Caucasus",
+                      "Vainakh_mythology",
+                      "Ingushetia",
+                      "Chechens",
+                      "Chechnya",
+                      "List_of_culinary_fruits",
+                      "Online_Etymology_Dictionary",
+                      "A_Latin_Dictionary",
+                      "Perseus_Project",
+                      "Charles_du_Fresne,_sieur_du_Cange",
+                      "Logeion",
+                      "ISBN_(identifier)",
+                      "OCLC_(identifier)",
+                      "FalconGuides",
+                      "Doi_(identifier)",
+                      "ISSN_(identifier)",
+                      "PMC_(identifier)",
+                      "PMID_(identifier)",
+                      "Cookbook",
+                      "Abate_Fetel",
+                      "Bosc_pear",
+                      "Choke_pear_(plant)",
+                      "Churchland_pear",
+                      "Concorde_(pear)",
+                      "Harovin_Sundown",
+                      "Huntington_pear",
+                      "Le_Conte_pear",
+                      "Parsonage_pear",
+                      "Seckel_pear",
+                      "Stinking_Bishop_pear",
+                      "Warden_pear",
+                      "Winter_Nelis_pear",
+                      "Pyrus_serikensis",
+                      "Herefordshire_Pomona",
+                      "Tottori_Nijisseiki_Pear_Museum",
+                      "World_Apple_and_Pear_Association",
+                      "Wikidata",
+                      "Q434",
+                      "Wikispecies",
+                      "Pyrus",
+                      "Australian_Plant_Name_Index",
+                      "Catalogue_of_Life",
+                      "State_Herbarium_of_South_Australia",
+                      "Encyclopedia_of_Life",
+                      "EPPO_Code",
+                      "FloraBase",
+                      "Flora_of_China",
+                      "Global_Biodiversity_Information_Facility",
+                      "Germplasm_Resources_Information_Network",
+                      "INaturalist",
+                      "International_Plant_Names_Index",
+                      "Interim_Register_of_Marine_and_Nonmarine_Genera",
+                      "Integrated_Taxonomic_Information_System",
+                      "National_Biodiversity_Network",
+                      "National_Center_for_Biotechnology_Information",
+                      "Natural_Resources_Conservation_Service#Plants",
+                      "Plants_of_the_World_Online",
+                      "Tropicos",
+                      "National_Herbarium_of_Victoria",
+                      "World_Flora_Online",
+                      "Q434#identifiers",
+                      "Pear",
+                      "Main_Page",
+                      "Peer",
+                      "Birnen",
+                      "Wamin_ka_kinkomakisitc",
+                      "Armud",
+                      "Gellygen",
+                      "Pearamuorat",
+                      "Pirnipuu_(perekond)",
+                      "Pirarbo",
+                      "Udareondo_(generoa)",
+                      "Piorra",
+                      "Peear",
+                      "Pir",
+                      "Perur",
+                      "Mpea",
+                      "Bumbieres",
+                      "Bierebeem",
+                      "Pera",
+                      "Peer_(plant)",
+                      "Peerbuumer",
+                      "Nok",
+                      "Grusza",
+                      "Almurt",
+                      "Pira",
+                      "Peir",
+                      "Dardha",
+                      "Piru",
+                      "Peras",
+                      "Armut",
+                      "Makleiz",
+                      "Pirn",
+                      "Privacy_policy"
+                    ]
+                  }
                 }
               }
             }
+          },
+          "404": {
+            "description": "article not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "operationId": "get-subarticles",
         "parameters": [
           {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "title",
-            "description": "title of article"
+            "$ref": "#/components/parameters/title"
           }
         ],
-        "description": "retrieve all links to other wikipedia pages on the current article."
+        "description": "retrieve all links to other wikipedia pages in the current one."
       }
     },
     "/article": {
       "get": {
         "summary": "article",
         "tags": [],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "article not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
         "operationId": "get-article",
         "parameters": [
           {
@@ -134,35 +398,89 @@
             "description": "title of article"
           }
         ],
-        "description": "get general information on the article",
+        "description": "get information on article",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "title": {
-                    "type": "string"
+                "$ref": "#/components/schemas/articleWithBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compare": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "result": 0.5,
+                      "to": {
+                        "title": "apple",
+                        "link": "https://en.wikipedia.org/wiki/apple"
+                      },
+                      "from": {
+                        "title": "pear",
+                        "link": "https://en.wikipedia.org/wiki/pear"
+                      }
+                    }
                   },
-                  "link": {
-                    "type": "string"
-                  },
-                  "body": {
-                    "type": "string"
-                  },
-                  "issues": {
-                    "type": "boolean"
-                  }
-                },
-                "x-examples": {
-                  "example-1": {
-                    "title": "Undefined",
-                    "link": "https://en.wikipedia.org/wiki/Undefined",
-                    "body": "\nUndefined may refer to:\n",
-                    "issues": false
+                  "properties": {
+                    "result": {
+                      "type": "number"
+                    },
+                    "to": {
+                      "$ref": "#/components/schemas/article"
+                    },
+                    "from": {
+                      "$ref": "#/components/schemas/article"
+                    }
                   }
                 }
               }
+            }
+          },
+          "400": {
+            "description": "Bad Request - params missing"
+          },
+          "404": {
+            "description": "Not Found - invalid article"
+          }
+        },
+        "operationId": "get-compare",
+        "parameters": [
+          {
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "name": "to",
+            "description": "title of first article"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "from",
+            "description": "title of second article"
+          }
+        ],
+        "description": "get similarity metric (dummy right now)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {},
+              "examples": {}
             }
           }
         }
@@ -171,59 +489,64 @@
   },
   "components": {
     "schemas": {
-      "User": {
-        "title": "User",
+      "articleWithBody": {
         "type": "object",
-        "description": "",
-        "examples": [
-          {
-            "id": 142,
-            "firstName": "Alice",
-            "lastName": "Smith",
-            "email": "alice.smith@gmail.com",
-            "dateOfBirth": "1997-10-31",
-            "emailVerified": true,
-            "signUpDate": "2019-08-24"
-          }
-        ],
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identifier for the given user."
-          },
-          "firstName": {
+          "title": {
             "type": "string"
           },
-          "lastName": {
+          "link": {
             "type": "string"
           },
-          "email": {
-            "type": "string",
-            "format": "email"
+          "body": {
+            "type": "string"
           },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date",
-            "example": "1997-10-31"
-          },
-          "emailVerified": {
-            "type": "boolean",
-            "description": "Set to true if the user's email has been verified."
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date",
-            "description": "The date that the user was created."
+          "issues": {
+            "type": "boolean"
           }
         },
-        "required": [
-          "id",
-          "firstName",
-          "lastName",
-          "email",
-          "emailVerified"
-        ]
+        "x-examples": {
+          "example-1": {
+            "title": "string",
+            "link": "string",
+            "body": "string",
+            "issues": true
+          }
+        }
+      },
+      "article": {
+        "title": "article",
+        "x-stoplight": {
+          "id": "p9q5egfuto2pq"
+        },
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          }
+        }
       }
-    }
+    },
+    "parameters": {
+      "title": {
+        "name": "title",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "title of article"
+      }
+    },
+    "responses": {},
+    "securitySchemes": {
+      "API Key - 1": {
+        "type": "oauth2"
+      }
+    },
+    "requestBodies": {}
   }
 }
