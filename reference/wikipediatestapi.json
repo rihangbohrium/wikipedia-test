@@ -489,15 +489,6 @@
           }
         }
       },
-      "post": {
-        "summary": "",
-        "operationId": "post-compare",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     },
     "/edit": {
       "post": {
