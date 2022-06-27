@@ -9,6 +9,78 @@
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "summary": "",
+        "operationId": "get",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": [
+                        "string",
+                        "array"
+                      ],
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "data",
+            "description": "any data to post "
+          }
+        ]
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "index"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "data",
+            "description": "new data for index"
+          }
+        ]
+      }
+    },
     "/article": {
       "get": {
         "summary": "article",
@@ -384,123 +456,6 @@
           }
         ],
         "description": "retrieve all links to other wikipedia pages in the current one."
-      }
-    },
-    "/compare": {
-      "get": {
-        "summary": "compare",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "x-examples": {
-                    "example-1": {
-                      "result": 0.5,
-                      "to": {
-                        "title": "apple",
-                        "link": "https://en.wikipedia.org/wiki/apple"
-                      },
-                      "from": {
-                        "title": "pear",
-                        "link": "https://en.wikipedia.org/wiki/pear"
-                      }
-                    }
-                  },
-                  "properties": {
-                    "result": {
-                      "type": "number"
-                    },
-                    "to": {
-                      "$ref": "#/components/schemas/article"
-                    },
-                    "from": {
-                      "$ref": "#/components/schemas/article"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request - params missing"
-          },
-          "404": {
-            "description": "Not Found - invalid article"
-          }
-        },
-        "operationId": "get-compare",
-        "parameters": [
-          {
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "name": "to",
-            "description": "title of first article"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "from",
-            "description": "title of second article"
-          }
-        ],
-        "description": "get similarity metric (dummy right now)",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {},
-              "examples": {}
-            }
-          }
-        }
-      }
-    },
-    "/edit": {
-      "post": {
-        "summary": "edit",
-        "operationId": "post-edit",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "description": "propose edits to article",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/title"
-          }
-        ]
-      }
-    },
-    "/view": {
-      "get": {
-        "summary": "view",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "article not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "operationId": "get-view",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/title"
-          }
-        ],
-        "description": "raw html"
       }
     }
   },
