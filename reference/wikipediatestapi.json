@@ -561,11 +561,7 @@
       }
     },
     "responses": {},
-    "securitySchemes": {
-      "API Key - 1": {
-        "type": "oauth2"
-      }
-    },
+    "securitySchemes": {},
     "requestBodies": {}
   }
 }
