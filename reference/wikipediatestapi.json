@@ -9,78 +9,6 @@
     }
   ],
   "paths": {
-    "/": {
-      "get": {
-        "summary": "",
-        "operationId": "get",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": [
-                        "string",
-                        "array"
-                      ],
-                      "items": {}
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "",
-        "operationId": "post",
-        "responses": {
-          "201": {
-            "description": "Created"
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "data",
-            "description": "any data to post "
-          }
-        ]
-      },
-      "patch": {
-        "summary": "",
-        "operationId": "patch",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "integer"
-            },
-            "in": "query",
-            "name": "index"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "data",
-            "description": "new data for index"
-          }
-        ]
-      }
-    },
     "/article": {
       "get": {
         "summary": "article",
@@ -121,6 +49,125 @@
           },
           "description": ""
         }
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-article",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/title"
+          }
+        ]
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-article",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/title"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "index",
+            "description": "index in history to patch"
+          }
+        ]
+      }
+    },
+    "/history": {
+      "get": {
+        "summary": "",
+        "operationId": "get",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": [
+                        "string",
+                        "array"
+                      ],
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [],
+      "delete": {
+        "summary": "",
+        "operationId": "delete-history",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "example-1": {
+                      "status": 200,
+                      "message": "OK - Deleted"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "index",
+            "description": "index of article"
+          }
+        ]
       }
     },
     "/subarticles": {
