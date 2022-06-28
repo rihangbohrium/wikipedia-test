@@ -42,7 +42,7 @@
             "description": "title of article"
           }
         ],
-        "description": "get information on article",
+        "description": "get article",
         "requestBody": {
           "content": {
             "application/json": {}
@@ -77,7 +77,8 @@
           {
             "$ref": "#/components/parameters/title"
           }
-        ]
+        ],
+        "description": "save article to dataArray"
       },
       "patch": {
         "summary": "",
@@ -99,7 +100,8 @@
             "name": "index",
             "description": "index in history to patch"
           }
-        ]
+        ],
+        "description": "edit saved article at given index"
       }
     },
     "/history": {
@@ -126,7 +128,8 @@
               }
             }
           }
-        }
+        },
+        "description": "View dataArray"
       },
       "parameters": [],
       "delete": {
@@ -167,7 +170,8 @@
             "name": "index",
             "description": "index of article"
           }
-        ]
+        ],
+        "description": "delete given index"
       }
     },
     "/subarticles": {
