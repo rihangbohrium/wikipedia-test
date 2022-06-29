@@ -1,5 +1,11 @@
 {
   "openapi": "3.1.0",
+  "info": {
+    "title": "EPS Doc - Draft",
+    "description": "Description",
+    "summary": "Summary",
+    "contact": {}
+  },
   "x-stoplight": {
     "id": "hr6kuxhysgenx"
   },
