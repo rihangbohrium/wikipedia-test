@@ -19,7 +19,11 @@ app.listen(PORT, (error) =>{
 const dataArray = []
 
 app.get('/history', (req, res) => {
-    res.json(dataArray)
+    const result = {
+        "data": dataArray
+    }
+
+    res.status(200).json(result)
 })
 
 app.delete('/history', (req, res) => {
@@ -36,6 +40,7 @@ app.get('/article', async (req, res) => {
     try {
         let formattedArticle = await getArticle(title);
         res.json(formattedArticle)   
+        //res.json('')
     } catch (err) {
         res.status(500).send(err)
     }
@@ -88,6 +93,11 @@ app.get('/subarticles', async (req, res) => {
     } catch (err) {
         res.json(err)
     }
+})
+
+app.get('/test', async (req, res) => {
+    console.log(req);
+    res.json('tested')
 })
 
 
