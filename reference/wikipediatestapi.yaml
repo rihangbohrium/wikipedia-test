@@ -434,6 +434,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/title'
       description: retrieve all links to other wikipedia pages in the current one.
+  /test:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-test
 components:
   schemas:
     articleWithBody:
