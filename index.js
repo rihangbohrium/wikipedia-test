@@ -18,57 +18,61 @@ app.listen(PORT, (error) =>{
 
 const dataArray = []
 
-app.get('/', (req, res) => {
-    res.json(dataArray)
+app.get('/history', (req, res) => {
+    const result = {
+        "data": dataArray
+    }
+
+    res.status(200).json(result)
 })
 
-app.post('/', (req, res) => {
-    const data = req.query.data;
-    dataArray.push(data)
-    res.status(201).json({
-        "status": 201,
-        'message': 'Resource created'
-    })
-})
-
-app.patch('/', (req, res) => {
+app.delete('/history', (req, res) => {
     const index = req.query.index;
-    const data = req.query.data;
-    dataArray[index] = data
-    res.status(204).json({
-        "status": 204,
-        'message': 'Updated'
+    dataArray.splice(index, 1);
+    res.status(200).json({
+        "status": 200,
+        'message': 'OK - Deleted'
     })
 })
 
 app.get('/article', async (req, res) => {
     const title = req.query.title;
     try {
-        let response;
-        try {
-            response = await request(`https://en.wikipedia.org/wiki/${title}`)
-        } catch (err) {
-            res.status(404).send(response)
-            return;
+        let formattedArticle = await getArticle(title);
+        res.json(formattedArticle)   
+        //res.json('')
+    } catch (err) {
+        res.status(500).send(err)
+    }
+})
+
+app.post('/article', async (req, res) => {
+    const title = req.query.title;
+    try {
+        let formattedArticle = await getArticle(title);
+        if (formattedArticle.issues) {
+            res.status(404).json(formattedArticle)
         }
-        const doc_obj = new JSDOM(response);
-        const doc = doc_obj.window.document.body;
-        r = {}
-        r['title'] = doc.querySelector('#firstHeading').innerHTML;
-        r['link'] = `https://en.wikipedia.org/wiki/${r['title']
-            .replace(' ', '_')}`
-        dataArray.push(r['link'])
-        const temp = doc.querySelectorAll('p')
-        let bodyString = ''
-        temp.forEach((val) => {
-            bodyString += val.textContent 
+        dataArray.push(formattedArticle)
+        res.status(201).json({
+            "status": 201,
+            'message': 'Resource created'
+        })  
+    } catch (err) {
+        res.status(500).send(err)
+    }
+})
+
+app.patch('/article', async (req, res) => {
+    try {
+        const index = req.query.index;
+        const title = req.query.title;
+        const newData = await getArticle(title)
+        dataArray[index] = newData
+        res.status(204).json({
+            "status": 204,
+            'message': 'Updated'
         })
-
-        const finalBodyString = bodyString.replace('\n', '')
-
-        r['body'] = finalBodyString
-        r['issues'] = false;
-        res.json(r)   
     } catch (err) {
         res.status(500).send(err)
     }
@@ -91,46 +95,11 @@ app.get('/subarticles', async (req, res) => {
     }
 })
 
-app.get('/edit', async (req, res) => {
-    try {
-        const title = req.query.title;
-        const response = await request(`https://en.wikipedia.org/wiki/${title}?action=edit`)
-        res.send(response)
-    } catch (err) {
-        res.json(err)
-    }
-
+app.get('/test', async (req, res) => {
+    console.log(req);
+    res.json('tested')
 })
 
-app.get('/compare', async (req, res) => {
-
-    try {
-        if(!req.query.to || !req.query.from) {
-        res.status(400).send('required params missing')
-        return
-        }
-        const to = req.query.to;
-        const from = req.query.from;
-
-        let response;
-        try {
-            response = await request(`https://en.wikipedia.org/wiki/${to}`)
-            response = await request(`https://en.wikipedia.org/wiki/${from}`)
-        } catch (err) {
-            res.status(404).send('article not found')
-            return;
-        }
-
-        const r = {}
-        r['result'] = .5
-        r['to'] = {'title': to, link: `https://en.wikipedia.org/wiki/${to}`}
-        r['from'] = {'title': from, link: `https://en.wikipedia.org/wiki/${from}`}
-
-        res.json(r)
-    } catch (err) {
-        res.status(500).send('internal error')
-    }
-})
 
 function parseArticle(toParse) {
     const hrefs = new Array();
@@ -167,4 +136,33 @@ function isValid(checkString) {
     }
 
     return true;
+}
+
+async function getArticle(title) {
+    let response
+
+    try {
+        response = await request(`https://en.wikipedia.org/wiki/${title}`)
+    } catch (err) {
+        return {
+            issues: true
+        };
+    }
+    const doc_obj = new JSDOM(response);
+    const doc = doc_obj.window.document.body;
+    const result = {}
+    result['title'] = doc.querySelector('#firstHeading').innerHTML;
+    result['link'] = `https://en.wikipedia.org/wiki/${result['title']
+        .replace(' ', '_')}`
+    const temp = doc.querySelectorAll('p')
+    let bodyString = ''
+    temp.forEach((val) => {
+        bodyString += val.textContent 
+    })
+
+    const finalBodyString = bodyString.replace('\n', '')
+
+    result['body'] = finalBodyString
+    result['issues'] = false;
+    return result;
 }
